@@ -1,0 +1,54 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <h1>Edit Perawat</h1>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Error!</strong> Please check your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('perawat.update', $perawat->id_perawat) }}" method="POST">
+            @csrf
+            @method('PUT')
+
+            <div class="mb-3">
+                <label for="id_perawat" class="form-label">ID Perawat</label>
+                <input type="text" name="id_perawat" class="form-control" id="id_perawat" value="{{ $perawat->id_perawat }}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="nama_perawat" class="form-label">Nama Perawat</label>
+                <input type="text" name="nama_perawat" class="form-control" id="nama_perawat" value="{{ $perawat->nama_perawat }}">
+            </div>
+            <div class="mb-3">
+                <label for="spesialis_perawat" class="form-label">Spesialis Perawat</label>
+                <input type="text" name="spesialis_perawat" class="form-control" id="spesialis_perawat" value="{{ $perawat->spesialis_perawat }}">
+            </div>
+            <div class="mb-3">
+                <label for="jadwal_kerja" class="form-label">Jadwal Kerja</label>
+                <input type="text" name="jadwal_kerja" class="form-control" id="jadwal_kerja" value="{{ $perawat->jadwal_kerja }}">
+            </div>
+            <div class="mb-3">
+                <label for="jam_mulai" class="form-label">Jam Mulai</label>
+                <input type="time" name="jam_mulai" class="form-control" id="jam_mulai" value="{{ $perawat->jam_mulai }}">
+            </div>
+            <div class="mb-3">
+                <label for="jam_selesai" class="form-label">Jam Selesai</label>
+                <input type="time" name="jam_selesai" class="form-control" id="jam_selesai" value="{{ $perawat->jam_selesai }}">
+            </div>
+            <div class="mb-3">
+                <label for="kontrak_kerja" class="form-label">Kontrak Kerja</label>
+                <input type="text" name="kontrak_kerja" class="form-control" id="kontrak_kerja" value="{{ $perawat->kontrak_kerja }}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+@endsection
